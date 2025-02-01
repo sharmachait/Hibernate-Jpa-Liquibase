@@ -1,8 +1,9 @@
---liquibase formatted sql
+-- liquibase formatted sql
 
---changeset JT:1677335672894-1
+-- changeset chait:1738394810241-1
+CREATE SEQUENCE  IF NOT EXISTS "book_seq" AS bigint START WITH 1 INCREMENT BY 50 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
-
+--changeset chait:1677335672894-2
 CREATE TABLE book (
     id BIGINT PRIMARY KEY,
     isbn VARCHAR(255),
@@ -10,14 +11,5 @@ CREATE TABLE book (
     title VARCHAR(255)
 );
 
---changeset JT:1677335672894-2
-CREATE SEQUENCE IF NOT EXISTS book_id_seq
-    INCREMENT BY 1
-    START WITH 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
--- Alter the book table to use the sequence
---changeset JT:1677335672894-3
-ALTER TABLE book ALTER COLUMN id SET DEFAULT nextval('book_id_seq');
+--changeset chait:1677335672894-3
+ALTER TABLE book ALTER COLUMN id SET DEFAULT nextval('book_seq');

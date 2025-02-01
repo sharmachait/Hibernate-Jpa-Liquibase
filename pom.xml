@@ -66,14 +66,13 @@
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>4.25.1</version>
+                <version>4.31.0</version>
                 <configuration>
-                    <url>jdbc:postgresql://ep-soft-recipe-a189x52v.ap-southeast-1.aws.neon.tech/test?sslmode=require&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</url>
+                    <changeLogFile>src/main/resources/db/changelog/changelog-master.sql</changeLogFile>
+                    <!-- <outputChangeLogFile>changelog-output.sql</outputChangeLogFile> -->
+                    <url>jdbc:postgresql://ep-soft-recipe-a189x52v.ap-southeast-1.aws.neon.tech/test?sslmode=require</url>
                     <username>learning_postgres_owner</username>
                     <password>t8qELP1OjCFp</password>
-                    <changeLogFile>src/main/resources/db/changelog/changelog-master.sql</changeLogFile>
-                    <changeSetAuthor>chaitu</changeSetAuthor>
-                    
                 </configuration>
                 <dependencies>
                   <dependency>

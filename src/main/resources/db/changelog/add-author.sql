@@ -1,6 +1,6 @@
---liquibase formatted sql
+-- liquibase formatted sql
 
---changeset JT:4
+-- changeset chait:1677335672894-4
 CREATE TABLE author (
     id BIGINT PRIMARY KEY,
     first_name VARCHAR(255),

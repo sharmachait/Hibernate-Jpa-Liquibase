@@ -68,9 +68,9 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.31.0</version>
                 <configuration>
-                    <changeLogFile>src/main/resources/db/changelog/changelog-master.sql</changeLogFile>
+                    <changeLogFile>src/main/resources/db/changelog/changelog-master.xml</changeLogFile>
                     <!-- <outputChangeLogFile>changelog-output.sql</outputChangeLogFile> -->
-                    <url>jdbc:postgresql://ep-soft-recipe-a189x52v.ap-southeast-1.aws.neon.tech/test?sslmode=require</url>
+                    <url>jdbc:postgresql://ep-soft-recipe-a189x52v-pooler.ap-southeast-1.aws.neon.tech/aaaaaaaaaaaaaaaaaaaaaaaa?sslmode=require</url>
                     <username>learning_postgres_owner</username>
                     <password>t8qELP1OjCFp</password>
                 </configuration>

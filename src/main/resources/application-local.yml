@@ -1,0 +1,11 @@
+spring:
+  sql:
+    init:
+      mode: always
+  datasource:
+    username: bookuser
+    url: jdbc:postgresql://ep-soft-recipe-a189x52v.ap-southeast-1.aws.neon.tech/test?sslmode=require
+    password: password
+  liquibase:
+    user: learning_postgres_owner
+    password: t8qELP1OjCFp

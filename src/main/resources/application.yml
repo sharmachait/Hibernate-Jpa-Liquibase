@@ -1,6 +1,6 @@
 spring:
   liquibase:
-    change-log: db/changelog/changelog-master.xml
+    change-log: classpath:db/changelog/changelog-master.xml
     user: learning_postgres_owner
     password: t8qELP1OjCFp
     # enabled: true
@@ -17,7 +17,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:postgresql://ep-soft-recipe-a189x52v-pooler.ap-southeast-1.aws.neon.tech/aaaaaaaaaaaaaaaaaaaaaaaa?sslmode=require
+    url: jdbc:postgresql://ep-soft-recipe-a189x52v-pooler.ap-southeast-1.aws.neon.tech/dao?sslmode=require
     username: learning_postgres_owner
     password: t8qELP1OjCFp
     driver-class-name: org.postgresql.Driver

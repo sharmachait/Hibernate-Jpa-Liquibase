@@ -4,7 +4,8 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
     
-    <include file="db/changelog/baseline-changelog.sql"/>
-    <include file="db/changelog/add-author.sql"/>
-    <include file="db/changelog/add-column.sql"/>
+    <include relativeToChangelogFile="true" file="baseline-changelog.sql"/>
+    <include relativeToChangelogFile="true" file="add-author.sql"/>
+    <include relativeToChangelogFile="true" file="add-column.sql"/>
+    <include relativeToChangelogFile="true" file="seed.sql"/>
 </databaseChangeLog>

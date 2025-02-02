@@ -1,9 +1,12 @@
 package guru.springframework.sdjpaintro.domain;
 
+import java.util.*;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 /**
  * Created by jt on 8/14/21.
@@ -17,6 +20,9 @@ public class Author {
 
   private String firstName;
   private String lastName;
+
+  @OneToMany(mappedBy = "author")
+  private Set<Book> books = new HashSet<>();
 
   public Long getId() {
     return id;

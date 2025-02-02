@@ -1,0 +1,25 @@
+spring:
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml
+    user: learning_postgres_owner
+    password: t8qELP1OjCFp
+    enabled: false
+  application:
+    name: primaryBackend
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://ep-soft-recipe-a189x52v-pooler.ap-southeast-1.aws.neon.tech/dao?sslmode=require
+    username: learning_postgres_owner
+    password: t8qELP1OjCFp
+    driver-class-name: org.postgresql.Driver
+server:
+  port: 5455

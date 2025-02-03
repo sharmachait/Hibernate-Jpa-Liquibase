@@ -8,4 +8,5 @@
     <include relativeToChangelogFile="true" file="add-author.sql"/>
     <include relativeToChangelogFile="true" file="add-column.sql"/>
     <include relativeToChangelogFile="true" file="seed.sql"/>
+    <include relativeToChangelogFile="true" file="enum.sql"/>
 </databaseChangeLog>

@@ -1,0 +1,46 @@
+package guru.springframework.sdjpaintro.dao;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.sql.DataSource;
+
+import org.springframework.stereotype.Repository;
+
+import guru.springframework.sdjpaintro.domain.Author;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Repository
+public class AuthorDaoImpl implements AuthorDao {
+
+  private final DataSource source;
+
+  @Override
+  public Author getById(Long id) {
+
+    Connection connection = null;
+    Statement statement = null;
+    ResultSet resultSet = null;
+
+    try {
+      connection = source.getConnection();
+      statement = connection.createStatement();
+      resultSet = statement.executeQuery("select * from author where id = " + id);
+      if (resultSet.next()) {
+        Author author = new Author();
+        author.setId(id);
+        author.setFirstName(resultSet.getString("first_name"));
+        author.setLastName(resultSet.getString("last_name"));
+        return author;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return null;
+  }
+
+}

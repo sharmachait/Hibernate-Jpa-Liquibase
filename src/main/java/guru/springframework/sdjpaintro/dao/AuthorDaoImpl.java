@@ -1,9 +1,6 @@
 package guru.springframework.sdjpaintro.dao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import javax.sql.DataSource;
 
@@ -22,13 +19,14 @@ public class AuthorDaoImpl implements AuthorDao {
   public Author getById(Long id) {
 
     Connection connection = null;
-    Statement statement = null;
+    PreparedStatement ps = null;
     ResultSet resultSet = null;
 
     try {
       connection = source.getConnection();
-      statement = connection.createStatement();
-      resultSet = statement.executeQuery("select * from author where id = " + id);
+      ps = connection.prepareStatement("select * from author where id = ?");
+      ps.setLong(1, id);
+      resultSet = ps.executeQuery();
       if (resultSet.next()) {
         Author author = new Author();
         author.setId(id);
@@ -42,8 +40,8 @@ public class AuthorDaoImpl implements AuthorDao {
       try {
         if (resultSet != null)
           resultSet.close();
-        if (statement != null)
-          statement.close();
+        if(ps!=null)
+          ps.close();
         if (connection != null)
           connection.close();
       } catch (Exception e) {

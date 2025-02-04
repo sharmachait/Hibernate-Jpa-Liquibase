@@ -4,4 +4,7 @@ import guru.springframework.sdjpaintro.domain.Author;
 
 public interface AuthorDao {
   Author getById(Long id);
+  Author getByName(String firstName, String lastName);
+  Author saveAuthor(Author author);
+  Author updateAuthor(Author author);
 }

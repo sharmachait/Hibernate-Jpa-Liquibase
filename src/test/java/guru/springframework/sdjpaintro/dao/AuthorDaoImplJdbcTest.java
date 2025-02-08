@@ -6,13 +6,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import guru.springframework.sdjpaintro.domain.Author;
 
 import org.junit.jupiter.api.*;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AuthorDaoImplTest {
+public class AuthorDaoImplJdbcTest {
   @Autowired
   private AuthorDao authorDaoImpl;
 
@@ -27,7 +28,7 @@ public class AuthorDaoImplTest {
   @Test
   void testGetAuthorByName() {
 
-    Author author = authorDaoImpl.getByName("john", "greene");
+    Author author = authorDaoImpl.getByName("Stephen", "King");
 
     assertNotNull(author);
 
@@ -36,8 +37,8 @@ public class AuthorDaoImplTest {
   void testSaveAuthor() {
 
     Author author = new Author();
-    author.setFirstName("john2");
-    author.setLastName("greene2");
+    author.setFirstName("unique");
+    author.setLastName("name");
     author = authorDaoImpl.saveAuthor(author);
 
     assertNotNull(author.getId());
@@ -47,12 +48,20 @@ public class AuthorDaoImplTest {
   void testUpdateAuthor() {
 
     Author author = new Author();
-    author.setFirstName("john");
-    author.setLastName("greene2");
+    author.setFirstName("unique");
+    author.setLastName("name");
     author = authorDaoImpl.updateAuthor(author);
 
     assertNotNull(author.getId());
-    assertEquals("john__greene2", author.getFirstName());
+    assertEquals("uniquestephen", author.getFirstName());
+
+  }
+
+  @Test
+  void testDeleteById() {
+    Author author = authorDaoImpl.getByName("Stephen", "King");
+    authorDaoImpl.deleteById(author.getId());
+    assertThrows(EmptyResultDataAccessException.class, () -> authorDaoImpl.getById(author.getId()));
 
   }
 }

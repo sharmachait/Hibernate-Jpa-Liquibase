@@ -10,8 +10,8 @@ import guru.springframework.sdjpaintro.domain.Author;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Repository
-public class AuthorDaoImpl implements AuthorDao {
+//@Repository
+public class AuthorDaoImplJdbc implements AuthorDao {
 
   private final DataSource source;
 
@@ -49,6 +49,33 @@ public class AuthorDaoImpl implements AuthorDao {
       }
     }
     return null;
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    Connection connection = null;
+    PreparedStatement ps = null;
+    ResultSet resultSet = null;
+
+    try {
+      connection = source.getConnection();
+      ps = connection.prepareStatement("delete from author where id = ?");
+      ps.setLong(1, id);
+      resultSet = ps.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (resultSet != null)
+          resultSet.close();
+        if(ps!=null)
+          ps.close();
+        if (connection != null)
+          connection.close();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   @Override
